@@ -18,7 +18,7 @@ const String predefinedUID = "7316ab2f";
 
 // 안드로이드 서버의 IP와 포트 번호 설정
 const char* serverIP = "192.168.137.32"; // 안드로이드 서버 IP 주소
-const int serverPort = 8080; // 안드로이드 서버 포트 번호
+const int serverPort = 9000; // 안드로이드 서버 포트 번호
 
 void setup() {
   // 시리얼 통신 초기화
@@ -28,7 +28,7 @@ void setup() {
   // ESP8266 초기화 명령어 전송
   sendCommand("AT+RST", 5000, "OK");
   sendCommand("AT+CWMODE=1", 1000, "OK");
-  if (sendCommand("AT+CWJAP=\"DESKTOP-Junho\",\"12345678\"", 15000, "OK"))// WiFi 연결
+  if (sendCommand("AT+CWJAP=\"DESKTOP-Junho\",\"12345678\"", 10000, "OK"))// WiFi 연결
   {
       Serial.println("WiFi Connected");
   }
@@ -59,12 +59,13 @@ void loop() {
     Serial.println(uid);
 
     // UID가 사전 정의된 값과 일치하는지 확인
-    bool isValid = (uid == predefinedUID);
-    Serial.print("일치함? : ");
-    Serial.println(isValid);
+    // bool isValid = (uid == predefinedUID);
+    // Serial.print("일치함? : ");
+    // Serial.println(isValid);
 
     // 일치 여부에 따라 결과를 저장
-    lastResult = isValid ? "true" : "false";
+    lastResult = "true";
+    // isValid ? "true" : "false";
     Serial.println("Response: " + lastResult); // 응답 값을 시리얼 모니터에 출력
 
     // 결과를 안드로이드 서버로 보내기
